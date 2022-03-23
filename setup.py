@@ -9,7 +9,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setuptools.setup(
     name="earthquake-IDN",
-    version="0.2",
+    version="0.3",
     author="Muhammad Shaufi Imanulhaq",
     author_email="imanshaufi14@gmail.com",
     description="This package will scrape data from [BMKG](https://www.bmkg.go.id) to get the latest quake happened "
@@ -18,7 +18,7 @@ setuptools.setup(
     long_description_content_type="text/markdown",
     url="https://github.com/student-of-remoteworkerid/latest-indonesia-earthquake",
     project_urls={
-        "Website": "https://remoteworke.id",
+        "Website": "https://remoteworker.id",
     },
     classifiers=[
         "Programming Language :: Python :: 3",
