@@ -1,11 +1,17 @@
 import requests
-from bs4 import BeautifulSoup
+import bs4
+"""
+Method = Fungsi
+Field / Attribute = Variabel
+"""
+
 
 class LatestEarthquake:
 
-    def __init__(self):
+    def __init__(self, url):
         self.description = 'To get the latest earthquake in Indonesia from BMKG.go.id'
-        self.result = None;
+        self.result = None
+        self.url = url
 
     def extraction_data(self):
         """
@@ -21,11 +27,11 @@ class LatestEarthquake:
 
         """
         try:
-            content = requests.get("https://bmkg.go.id")
+            content = requests.get(self.url)
         except Exception:
             return None
         if content.status_code == 200:
-            soup = BeautifulSoup(content.text, 'html.parser')
+            soup = bs4.BeautifulSoup(content.text, 'html.parser')
 
             result = soup.find('span', {'class': 'waktu'})
             result = result.text.split(', ')
@@ -89,7 +95,7 @@ class LatestEarthquake:
         self.display_data()
 
 if __name__ == '__main__':
-    earthquake_in_indonesian =  LatestEarthquake()
+    earthquake_in_indonesian = LatestEarthquake('https://bmkg.go.id')
     print('Description package', earthquake_in_indonesian.description)
     earthquake_in_indonesian.run()
     # earthquake_in_indonesian.extraction_data()
