@@ -9,7 +9,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setuptools.setup(
     name="earthquake-IDN",
-    version="0.3",
+    version="0.6",
     author="Muhammad Shaufi Imanulhaq",
     author_email="imanshaufi14@gmail.com",
     description="This package will scrape data from [BMKG](https://www.bmkg.go.id) to get the latest quake happened "

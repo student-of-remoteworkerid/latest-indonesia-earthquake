@@ -11,9 +11,10 @@ This package will use module BeautifulSoup4 and Requests, to produce output in t
 import earthquakelatest
 
 if __name__ == '__main__':
-    print('My application')
-    result = earthquakelatest.extraction_data()
-    earthquakelatest.display_data(result)
+    earthquake_in_indonesian = earthquakelatest.LatestEarthquake('https://bmkg.go.id')
+    print(f'My application using package have description {earthquake_in_indonesian.description}')
+    earthquake_in_indonesian.display_description()
+    earthquake_in_indonesian.run()
 ```
 
 # Author
