@@ -3,15 +3,38 @@ import bs4
 """
 Method = Fungsi
 Field / Attribute = Variabel
+Constructor = method yang dipanggol pertama kali saat object diciptkan, biasanya digunakan untuk mendeklarasikan semua 
+              field pada class ini
 """
 
 
-class LatestEarthquake:
-
-    def __init__(self, url):
-        self.description = 'To get the latest earthquake in Indonesia from BMKG.go.id'
+class Disaster:
+    def __init__(self, url, description):
+        self.description = description
         self.result = None
         self.url = url
+
+    def display_description(self):
+        print(self.description)
+
+    def extraction_data(self):
+        print('extraction data not yet implemented')
+
+    def display_data(self):
+        print('display data not yet implemented')
+
+    def run(self):
+        self.extraction_data()
+        self.display_data()
+
+class LatestFlood(Disaster):
+    def __init__(self, url):
+        super(LatestFlood, self).__init__(url,
+                                          'NOT YET IMPLEMENTED, but it should return last flood in Indonesian')
+
+class LatestEarthquake(Disaster):
+    def __init__(self, url):
+        super(LatestEarthquake, self).__init__(url, 'To get the latest earthquake in Indonesia from BMKG.go.id')
 
     def extraction_data(self):
         """
@@ -23,9 +46,8 @@ class LatestEarthquake:
         Epicenter: Pusat gempa berada di laut 109 km Tenggara Kota Sukabumi
         perceived: Dirasakan (Skala MMI): II Singajaya, II Cidaun, II Agrabinta, II Cidora
         :return:
-
-
         """
+
         try:
             content = requests.get(self.url)
         except Exception:
@@ -90,13 +112,11 @@ class LatestEarthquake:
         print(f"Location: {self.result['location']}")
         print(f"Perceived: {self.result['perceived']}")
 
-    def run(self):
-        self.extraction_data()
-        self.display_data()
-
 if __name__ == '__main__':
     earthquake_in_indonesian = LatestEarthquake('https://bmkg.go.id')
-    print('Description package', earthquake_in_indonesian.description)
+    earthquake_in_indonesian.display_description()
     earthquake_in_indonesian.run()
-    # earthquake_in_indonesian.extraction_data()
-    # earthquake_in_indonesian.display_data()
+
+    flood_in_indonesian = LatestFlood('NOT YET')
+    flood_in_indonesian.display_description()
+    flood_in_indonesian.run()
